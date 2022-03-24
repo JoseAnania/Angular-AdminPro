@@ -1,0 +1,49 @@
+<!--HTML exclusivo de usuarios Logueados-->
+
+<!--Copiamos según documentación de AdminPro-->
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+
+    <!--Llamamos al componente Header-->
+    <app-header></app-header>
+
+    <!--Llamamos al componente Sidebar-->
+    <app-sidebar></app-sidebar>
+
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <!--Llamamos al componente Breadcrumbs-->
+            <app-breadcrumbs></app-breadcrumbs>
+
+            <!--Rutas-->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!--Llamamos al Módulo que maneja las Rutas-->
+                            <router-outlet></router-outlet>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Footer (cómo no creamos un componente Footer lo "dibujamos")-->
+
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer">
+            © 20xx Admin Pro by wrappixel.com
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+</div>
