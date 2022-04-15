@@ -1,0 +1,13 @@
+<!--HTML para el diseño del gráfico de Donas-->
+
+<div class="card">
+    <div class="card-body">
+        <h3>{{title}}</h3>
+        <!--Gráfico de Dona según documentación de ng2-charts-->
+        <div>
+            <div style="display: block">
+                <canvas baseChart [data]="doughnutChartData" [type]="doughnutChartType"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

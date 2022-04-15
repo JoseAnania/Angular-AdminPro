@@ -23,7 +23,7 @@ import { AuthModule } from './auth/auth.module';
     // importamos el Módulo que agrupa las Pages
     PagesModule,
     // importamos el Módulo que agrupa los Auth
-    AuthModule
+    AuthModule,
   ],
 
   bootstrap: [AppComponent]

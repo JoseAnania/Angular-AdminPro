@@ -8,7 +8,8 @@ import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
-
+import { FormsModule } from '@angular/forms';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -36,6 +37,10 @@ import { AppRoutingModule } from '../app-routing.module';
     SharedModule,
     // importamos el Módulo que maneja las Rutas
     AppRoutingModule,
+    // importamos el Módulo que nos permite usar los Formularios de Angular
+    FormsModule,
+    // importamos el Módulo que nos permite usar los Componentes
+    ComponentsModule,
   ]
 })
 export class PagesModule { }
