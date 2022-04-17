@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  // inyectamos el Módulo que nos permite usar las Rutas
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  // Método de Login que al ingresar nos lleve al Dashboard
+  login() {
+
+    this.router.navigateByUrl('/');
   }
 
 }
