@@ -9,6 +9,7 @@ import { Grafica1Component } from './grafica1/grafica1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 const routes: Routes = [
@@ -18,6 +19,8 @@ const routes: Routes = [
   {
     path: '', 
     component: PagesComponent,
+    // protegemos las rutas con el CanActivate del Guard (para que no se pueda entrar con la URL)
+    canActivate: [AuthGuard],
     children: [
       {path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'}},
       {path: 'progress', component: ProgressComponent, data: {titulo: 'ProgressBar'}},

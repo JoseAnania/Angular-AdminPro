@@ -13,6 +13,17 @@
 
 /* Cursor Pointer */
 
-#themecolors .selector {
+#themecolors .selector,
+.cursor {
     cursor: pointer;
+}
+
+
+/* Botón de Google */
+
+#google-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
