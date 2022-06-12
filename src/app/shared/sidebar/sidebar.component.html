@@ -12,13 +12,19 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="user-profile">
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="./assets/images/users/profile.png" alt="user" /><span class="hide-menu">Steave Jobs </span></a>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+
+                        <!--Mostramos el nombre y la imagen del Usuario (si tiene, sino mostramos "no img")-->
+                        <img [src]="usuario?.imagenUrl" alt="user" /><span class="hide-menu">{{usuario?.nombre}}</span></a>
+
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="javascript:void()">My Profile </a></li>
+                        <!--Redirigimos a la Página del Perfil de Usuario con RouterLink (y el Active para que marque donde estamos)-->
+                        <li><a routerLink="./perfil" routerLinkActive="active">My Profile </a></li>
                         <li><a href="javascript:void()">My Balance</a></li>
                         <li><a href="javascript:void()">Inbox</a></li>
                         <li><a routerLink="account-settings">Account Setting</a></li>
                         <li><a routerLink="login">Logout</a></li>
+
                     </ul>
                 </li>
                 <li class="nav-devider"></li>

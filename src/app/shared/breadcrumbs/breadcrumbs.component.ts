@@ -11,7 +11,7 @@ import { filter, map, Subscription } from 'rxjs';
 export class BreadcrumbsComponent implements OnDestroy {
 
   // propiedad para almacenar el título de la página
-  public titulo!: string;
+  public titulo: string;
 
   // propiedad para destruir el titulo 
   public tituloSubs$: Subscription;

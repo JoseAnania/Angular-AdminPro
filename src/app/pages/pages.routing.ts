@@ -10,6 +10,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -22,12 +23,13 @@ const routes: Routes = [
     // protegemos las rutas con el CanActivate del Guard (para que no se pueda entrar con la URL)
     canActivate: [AuthGuard],
     children: [
+      {path: 'account-settings', component: AccountSettingsComponent, data: {titulo: 'Ajustes de Cuenta'}},
       {path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'}},
-      {path: 'progress', component: ProgressComponent, data: {titulo: 'ProgressBar'}},
       {path: 'grafica1', component: Grafica1Component, data: {titulo: 'Gráfica #1'}},
+      {path: 'perfil', component: PerfilComponent, data: {titulo: 'Perfil de Usuario'}},
+      {path: 'progress', component: ProgressComponent, data: {titulo: 'ProgressBar'}},
       {path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas'}},
       {path: 'rxjs', component: RxjsComponent, data: {titulo: 'Observables (Rxjs)'}},
-      {path: 'account-settings', component: AccountSettingsComponent, data: {titulo: 'Ajustes de Cuenta'}},
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
     ]
   },    

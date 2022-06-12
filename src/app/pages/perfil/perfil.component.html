@@ -1,0 +1,71 @@
+<!--HTML de la página del Perfil del Usuario-->
+
+<!--Copiamos el Form de Admin Pro-->
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Mi Perfil de Usuario</h4>
+                <h6 class="card-subtitle">Ajustes</h6>
+
+                <!--Asignamos al Formulario el Formulario del componente con FormGroup-->
+                <!--Actualizamos el Formulario con el Submit-->
+                <form class="form p-t-20" [formGroup]="perfilForm" (submit)="actualizarPerfil()">
+                    <div class="form-group">
+                        <label for="exampleInputuname">User Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+
+                            <!--Asignamos los campos del Formulario del Componente con el FormControlName-->
+                            <input type="text" class="form-control" id="exampleInputuname" placeholder="Nombre del Usuario" formControlName="nombre">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+
+                            <!--Asignamos los campos del Formulario del Componente con el FormControlName-->
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" formControlName="email">
+
+                        </div>
+                    </div>
+                    <!--Agregamos un ícono al Botón-->
+                    <!--Validamos que el botón no esté "activo" si el formulario es invalido-->
+                    <button type="submit" class="btn btn-success btn-block waves-effect waves-light m-r-10" [disabled]="perfilForm.invalid">
+                        Guardar Cambios
+                        <i class="fa fa-save"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Imagen del Usuario-->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Avatar</h4>
+                <h6 class="card-subtitle">Imagen del Usuario</h6>
+
+                <!--Mostramos una imagen previa de la imagen seleccionada (sea la actual o la nueva imagen seleccionada)-->
+                <div class="text-center">
+                    <img *ngIf="!imagenTemp" [src]="usuario.imagenUrl" class="img-avatar">
+                    <img *ngIf="imagenTemp" [src]="imagenTemp" class="img-avatar">
+                </div>
+                <br>
+
+                <!--Usamos el Change para subir archivos-->
+                <input type="file" (change)="cambiarImagen($event.target.files[0])">
+                <br><br>
+
+                <!--Validamos que el botón se "desactive" si no hay ninguna imagen a subir y subimos archivos con el Click-->
+                <button type="button" [disabled]="!imagenSubir" (click)="subirImagen()" class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                    Cambiar Imagen
+                    <i class="fa fa-save"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
