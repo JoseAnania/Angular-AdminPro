@@ -1,0 +1,44 @@
+<!--HTML del Modal para cambiar imágen en Mantenimientos-->
+
+<!--Copiamos el Modal desde AdminPro y agregamos una clase para ocultarlo o mostrarlo-->
+<div class="fondo-modal-imagen animated fadeIn fast" [class.oculto]="fileUploadModalService.ocultarModal">
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block; padding-right: 17px;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">Cargar Imagen</h4>
+
+                    <!--Usamos Click para llamar al método para cerrar el Modal-->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()"><span aria-hidden="true">×</span></button>
+
+                </div>
+                <div class="modal-body">
+
+                    <!--Imagen del Usuario del Modal-->
+                    <h3>Seleccione una Imágen</h3>
+
+                    <!--Mostramos una imagen previa de la imagen seleccionada (sea la actual o la nueva imagen seleccionada)-->
+                    <div class="text-center">
+                        <img *ngIf="!imagenTemp" [src]="fileUploadModalService.img" class="img-avatar">
+                        <img *ngIf="imagenTemp" [src]="imagenTemp" class="img-avatar">
+                    </div>
+                    <br>
+
+                    <!--Usamos el Change para subir archivos-->
+                    <input type="file" (change)="cambiarImagen($event.target.files[0])">
+                    <br><br>
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <!--Usamos Click para llamar al método para cerrar el Modal-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
+
+                    <!--Usamos Click para llamar al método de cargar la imagen-->
+                    <button type="button" class="btn btn-primary" (click)="subirImagen()">Cargar Imagen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

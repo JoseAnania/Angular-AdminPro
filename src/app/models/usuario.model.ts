@@ -21,8 +21,13 @@ export class Usuario {
     // Método GET para obtener la Imagen del Usuario
     get imagenUrl() {
         
+        // validamos que la imagen exista
+        if (!this.img) {
+            return `${base_url}/uploads/usuarios/no-image`; 
+        }
+
         // validamos si el usuario tiene imagen
-        if (this.img) {
+        else if (this.img) {
 
             return `${base_url}/uploads/usuarios/${this.img}`;
 

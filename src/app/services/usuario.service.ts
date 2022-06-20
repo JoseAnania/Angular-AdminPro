@@ -9,6 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { map, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario.model';
+import { CargarUsuario } from '../interfaces/cargar-usuarios.interface';
 
 // guardamos en una constante la parte de la URL igual en todas las peticiones HTTP (desde Enviroment)
 const base_url = environment.base_url;
@@ -88,9 +89,10 @@ export class UsuarioService {
   actualizarPerfil( data: {email: string, nombre: string, role: string} ) {
 
     // como el "Role" es obligatorio pero no lo podemos modificar desde el Form lo desestructuramos y mandamos igual
+    // es decir no permitimos modificarlo
     data = {
       ...data,
-      role: this.usuario.role || '',
+      role: this.usuario.role,
     };
 
     // obtenemos el Token guardado en el LocalStorage
@@ -104,6 +106,20 @@ export class UsuarioService {
     });
   }
 
+    // Método para Actualizar el Rol de un Usuario (ya que el ActualizarPerfil no permite cambio de Rol)
+    actualizarRole( usuario: Usuario ) {
+  
+      // obtenemos el Token guardado en el LocalStorage
+      const token = localStorage.getItem('token') || '';
+  
+      // realizamos la modificación con una petición PUT
+      return this.http.put(`${base_url}/usuarios/${usuario.uid}`, usuario, {
+        headers: {
+          'x-token': token
+        }
+      });
+    }
+
   // Método de Login del tipo LoginForm(interface) (recibe por parámetro los datos del Formulario de Login)
   login( formData: LoginForm) {
     
@@ -114,5 +130,45 @@ export class UsuarioService {
           localStorage.setItem('token', resp.token)
         })
       )
+  }
+
+  // Método para Cargar los Usuarios que recibe por parámetro la cantidad a mostrar por página (Listarlos en la página de Mantenimiento/Usuarios)
+  cargarUsuarios(desde: number = 0) {
+    
+    // obtenemos el Token guardado en el LocalStorage
+    const token = localStorage.getItem('token') || '';
+
+    // realizamos la petición GET al Back para obtener los Usuarios (respuesta del tipo de la interface CargarUsuario)
+    return this.http.get<CargarUsuario>(`${base_url}/usuarios?desde=${desde}`, {
+      headers: {
+        'x-token': token
+      }
+
+      // pasamos por el Pipe y el Map para poder mostrar las imagenes
+    }).pipe (
+      map(resp => {
+        
+        // transformamos el objeto
+        const usuarios = resp.usuarios.map(user => new Usuario(user.nombre, user.email, '', user.img, user.google, user.role, user.uid));
+        return {
+          total: resp.total,
+          usuarios
+        }
+      })
+    )
+  }
+
+  // Método para Eliminar un Usuario (que recibe por parámetro un Usuario(podría ser también un uid))
+  eliminarUsuario( usuario: Usuario) {
+
+    // obtenemos el Token guardado en el LocalStorage
+    const token = localStorage.getItem('token') || '';
+
+    // realizamos la petición DELETE al Back para eliminar un Usuario
+    return this.http.delete(`${base_url}/usuarios/${usuario.uid}`, {
+      headers: {
+        'x-token': token
+      }
+    });
   }
 }

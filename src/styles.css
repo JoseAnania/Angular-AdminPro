@@ -25,3 +25,43 @@
     height: 200px;
     width: 200px;
 }
+
+
+/* Tabla donde se muestran los Usuarios/Médicos/Hospitales en Mantenimientos */
+
+.w100 {
+    width: 100px;
+}
+
+
+/* Tamaño de imagen a mostrar en la Tabla de los Usuarios/Médicos/Hospitales en Mantenimientos */
+
+.avatar {
+    border: 1px solid grey;
+    width: 30px;
+    border-radius: 100%;
+}
+
+
+/* Combo donde se muestran los Roles de Usuarios/Médicos/Hospitales en Mantenimientos */
+
+.w140 {
+    width: 140px;
+}
+
+
+/* Estilo del Modal para cargar imágenes en Mantenimientos */
+
+.fondo-modal-imagen {
+    background-color: rgba(0, 0, 0, 0.4);
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9999;
+}
+
+.oculto {
+    display: none;
+}

@@ -96,7 +96,6 @@ export class PerfilComponent implements OnInit {
     reader.onloadend = () => {
       this.imagenTemp = reader.result;
     }
-
   }
 
   // Método para subir Archivos
