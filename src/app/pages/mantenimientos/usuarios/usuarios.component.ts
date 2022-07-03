@@ -22,8 +22,8 @@ export class UsuariosComponent implements OnInit {
   // propiedad Arreglo de Usuarios
   public usuarios: Usuario[] = [];
 
-    // propiedad para almacenar Temporalmente el Arreglo de Usuarios
-    public usuariosTemp: Usuario[] = [];
+  // propiedad para almacenar Temporalmente el Arreglo de Usuarios
+  public usuariosTemp: Usuario[] = [];
 
   // propiedad para la páginación
   public desde: number = 0;
@@ -102,7 +102,7 @@ export class UsuariosComponent implements OnInit {
       .subscribe(resp => {
 
         // llenamos las propiedades
-        this.usuarios = resp;
+        this.usuarios = resp as Usuario[];
       });
   }
 
@@ -155,7 +155,6 @@ export class UsuariosComponent implements OnInit {
 
   // Método que abre el Modal para cargar una imágen
   abrirModal(usuario: Usuario) {
-    console.log(usuario);
 
     // llamamos al método del Servicio que abre el Modal
     this.fileUploadModalService.abrirModal('usuarios', usuario.uid, usuario.img);

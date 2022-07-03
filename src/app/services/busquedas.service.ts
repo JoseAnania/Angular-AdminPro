@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario.model';
+import { Hospital } from '../models/hospital.model';
+import { Medico } from '../models/medico.model';
 
 // guardamos en una constante la parte de la URL igual en todas las peticiones HTTP (desde Enviroment)
 const base_url = environment.base_url;
@@ -22,12 +24,28 @@ export class BusquedasService {
     private router: Router) { }
 
   // Método privado para transformar el Objeto Usuarios
-  private transformarUsuario(resultados: any[]): any[] {
+  private transformarUsuario(resultados: any[]): Usuario[] {
 
     return resultados.map(
       user => new Usuario(user.nombre, user.email, '', user.img, user.google, user.role, user.uid)
     );
   }
+
+  // Método privado para transformar el Objeto Hospitales
+  private transformarHospitales(resultados: any[]): Hospital[] {
+
+    return resultados.map(
+      hospital => new Hospital(hospital.nombre, hospital._id, hospital.img, hospital.usuario._id)
+    );
+  }
+
+    // Método privado para transformar el Objeto Médicos
+    private transformarMedicos(resultados: any[]): Medico[] {
+
+      return resultados.map(
+        medico => new Medico(medico.nombre, medico._id, medico.img, medico.usuario._id)
+      );
+    }
 
   // Método que realiza la búsqueda  
   buscar(tabla: 'usuarios'|'medicos'|'hospitales', termino: string) {
@@ -48,6 +66,12 @@ export class BusquedasService {
         switch (tabla) {
           case 'usuarios':
             return this.transformarUsuario(resp.resultados);
+
+          case 'hospitales':
+            return this.transformarHospitales(resp.resultados);
+
+          case 'medicos':
+            return this.transformarMedicos(resp.resultados);
         
           default:
             return [];

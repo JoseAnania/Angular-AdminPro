@@ -1,0 +1,94 @@
+<!--HTML de la página de Mantenimientos/Hospitales-->
+
+<!--Buscador-->
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <!--Para realizar la Búsqueda usamos KeyUp y una referencia local con #-->
+                <input type="text" class="form-control" placeholder="Buscar Hospital..." (keyup)="buscar(txtTermino.value)" #txtTermino>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Loading-->
+<!--Mostramos o no el Loading con NgIf-->
+<div class="row animated fadeIn fast" *ngIf="cargando">
+
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<!--Copiamos una Table de AdminPro-->
+
+<!--Mostramos o no la Tabla de Hospitales con NgIf-->
+<div class="row" *ngIf="!cargando">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-8">
+                        <!--Mostramos la cantidad de Hospitales-->
+                        <h4 class="card-title">Hospitales ({{hospitales.length}})</h4>
+                        <h6 class="card-subtitle">Hospitales Registrados</h6>
+                    </div>
+                    <div class="col">
+                        <!--Botón para Agregar Hospitales-->
+                        <div class="text-right">
+
+                            <!--Abrimos el Modal de SweetAlert con Click-->
+                            <button class="btn btn-primary" (click)="abrirSweetAlert()">
+                                <i class="fa fa-hospital-o"></i>
+                                Crear Hospital
+                            </button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Foto</th>
+                                <th>Nombre</th>
+                                <th class="text-nowrap w100">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!--Llenamos la Tabla con el NgFor-->
+                            <tr *ngFor="let hospital of hospitales">
+
+                                <!--Mostramos la Imagen del Hospital con el Pipe personalizado-->
+                                <td class="text-center">
+                                    <img [src]="hospital.img | imagen: 'hospitales'" [alt]="hospital.nombre" class="avatar cursor" (click)="abrirModal(hospital)">
+                                </td>
+
+                                <!--Traemos desde BD el nombre de cada Hospital con NgModel-->
+                                <input type="text" class="form-control" placeholder="Nombre del Hospital" [(ngModel)]="hospital.nombre">
+                                <td class="text-nowrap text-center">
+
+                                    <!--Modificamos Hospital utilizando el Click-->
+                                    <a (click)="actualizarHospital(hospital)" class="cursor" data-toggle="tooltip" data-original-title="Guardar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+
+                                    <!--Eliminamos Hospital utilizando el Click-->
+                                    <a (click)="eliminarHospital(hospital)" class="cursor" data-toggle="tooltip" data-original-title="Borrar"> <i class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

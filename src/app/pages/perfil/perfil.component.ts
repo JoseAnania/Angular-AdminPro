@@ -40,7 +40,7 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // traemos desde la BD los campos a los TextBox los datos del USuario para mostrarlos
+    // traemos desde la BD los campos a los TextBox los datos del Usuario para mostrarlos
     this.perfilForm = this.fb.group({
       nombre: [this.usuario.nombre, Validators.required],
       email: [this.usuario.email, [Validators.required, Validators.email]],

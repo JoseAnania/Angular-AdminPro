@@ -50,6 +50,13 @@
 }
 
 
+/* Tabla donde se muestran la imagen del Médico en Mantenimientos/Medicos/Medico */
+
+.w200 {
+    width: 200px;
+}
+
+
 /* Estilo del Modal para cargar imágenes en Mantenimientos */
 
 .fondo-modal-imagen {

@@ -1,0 +1,84 @@
+<!--HTML para la Creación o Actualización de un Médico-->
+
+<!--Copiamos un Form de AdminPro-->
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Médico</h4>
+                <h6 class="card-subtitle">Actualizar información</h6>
+
+                <!--Asignamos al Formulario el Formulario del componente con FormGroup-->
+                <!--Actualizamos o Creamos el Formulario (es decir el Médico) con el Submit-->
+                <form class="form-horizontal p-t-20" [formGroup]="medicoForm" (submit)="guardarMedico()">
+
+                    <!--Preguntamos si existe un Médico Seleccionado con NgIf (para saber si entramos a la página por edición o por creación)-->
+                    <div class="form-group row" *ngIf="medicoSeleccionado">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                                <!--Mostramos la imagen correspondiente al médico-->
+                                <img [src]="medicoSeleccionado.img | imagen: 'medicos'" class="w200" />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputuname3" class="col-sm-3 control-label">Nombre</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+
+                                <!--Asignamos los campos del Formulario del Componente con el FormControlName-->
+                                <input type="text" class="form-control" id="exampleInputuname3" placeholder="Nombre del Médico" formControlName="nombre">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleInputEmail3" class="col-sm-3 control-label">Hospital</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+
+                                <!--Combo para mostrar los Hospitales-->
+                                <!--Asignamos los campos del Formulario del Componente con el FormControlName-->
+                                <select class="form-control" formControlName="hospital">
+                                    <!--Recorremos el arreglo de Hospitales con NgFor-->
+                                    <option value="">Seleccione Hospital</option>
+                                    <option *ngFor="let hospital of hospitales" [value]="hospital._id">{{hospital.nombre}}</option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+
+                            <!--Validamos que el botón no esté "activo" si el formulario es invalido-->
+                            <button type="submit" [disabled]="medicoForm.invalid" class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"> Guardar</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Columna para mostrar la imágen del Hospital del Médico-->
+    <!--Mostramos los datos del Hospital sólo cuando exista uno seleccionado en el Combo con NgIf-->
+    <div class="col animated fadeIn fast" *ngIf="hospitalSeleccionado">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospital</h4>
+
+                <!--Mostramos el nombre del Hospital seleccionado en el Combo-->
+                <h6 class="card-subtitle">{{hospitalSeleccionado.nombre}}</h6>
+
+                <!--Mostramos la imagen correspondiente al hospital del Combo (pasado por el Pipe de Imagen)-->
+                <img [src]="hospitalSeleccionado.img | imagen: 'hospitales'" class="w200" />
+            </div>
+        </div>
+    </div>
+</div>

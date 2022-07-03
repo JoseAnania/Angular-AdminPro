@@ -15,6 +15,10 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
 
 
 @NgModule({
@@ -30,6 +34,9 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
     RxjsComponent,
     PerfilComponent,
     UsuariosComponent,
+    HospitalesComponent,
+    MedicosComponent,
+    MedicoComponent,
   ],
 
   exports: [
@@ -54,6 +61,8 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
     ComponentsModule,
     // importamos el Módulo que nos permite usar los Formularios Reactivos
     ReactiveFormsModule,
+    // importamos el Módulo que nos permite usar los Pipes personalizados
+    PipesModule,
   ]
 })
 export class PagesModule { }
