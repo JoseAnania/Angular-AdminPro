@@ -1,0 +1,119 @@
+<!--HTML donde se muestran los resultados de la Búsqueda Global del Header-->
+
+<div class="row animated fadeIn fast">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Usuarios</h3>
+
+                <!--Mostramos o no la Alerta con NgIf-->
+                <div class="alert alert-info animated fadeIn fast" *ngIf="usuarios.length === 0">
+                    <p class="mb-0">No hay usuarios con ese término</p>
+                </div>
+
+                <!--Copiamos una Tabla de AdminPro de Usuarios y la mostramos o no con NgIf-->
+                <div class="table-responsive" *ngIf="usuarios.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!--Mostramos los resultados de la búsqueda recorriendo la lista con NgFor-->
+                            <tr *ngFor="let usuario of usuarios" class="animated fadeIn fast">
+
+                                <!--Mostramos la Imagen pasando por el Pipe personalizado-->
+                                <td>
+                                    <img [src]="usuario.img | imagen:'usuarios'" class="avatar">
+                                </td>
+                                <td>{{usuario.nombre}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Médicos</h3>
+
+                <!--Mostramos o no la Alerta con NgIf-->
+                <div class="alert alert-info animated fadeIn fast" *ngIf="medicos.length === 0">
+                    <p class="mb-0">No hay médicos con ese término</p>
+                </div>
+
+                <!--Copiamos una Tabla de AdminPro de Médicos y la mostramos o no con NgIf-->
+                <div class="table-responsive" *ngIf="medicos.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--Mostramos los resultados de la búsqueda recorriendo la lista con NgFor-->
+                            <tr *ngFor="let medico of medicos" class="animated fadeIn fast">
+
+                                <!--Mostramos la Imagen pasando por el Pipe personalizado-->
+                                <td>
+                                    <img [src]="medico.img | imagen:'medicos'" class="avatar">
+                                </td>
+
+                                <!--Utilizamos RouterLink para permitir acceder a la página de edición del Médico-->
+                                <td>
+                                    <a [routerLink]="['/medico', medico._id]">
+                                        {{medico.nombre}}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Hospitales</h3>
+
+                <!--Mostramos o no la Alerta con NgIf-->
+                <div class="alert alert-info animated fadeIn fast" *ngIf="hospitales.length === 0">
+                    <p class="mb-0">No hay hospitales con ese término</p>
+                </div>
+
+                <!--Copiamos una Tabla de AdminPro de Hospitales y la mostramos o no con NgIf-->
+                <div class="table-responsive" *ngIf="hospitales.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--Mostramos los resultados de la búsqueda recorriendo la lista con NgFor-->
+                            <tr *ngFor="let hospital of hospitales" class="animated fadeIn fast">
+
+                                <!--Mostramos la Imagen pasando por el Pipe personalizado-->
+                                <td>
+                                    <img [src]="hospital.img | imagen:'hospitales'" class="avatar">
+                                </td>
+                                <td>{{hospital.nombre}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

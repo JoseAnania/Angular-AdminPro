@@ -15,6 +15,8 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 const routes: Routes = [
@@ -28,6 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'account-settings', component: AccountSettingsComponent, data: {titulo: 'Ajustes de Cuenta'}},
+      {path: 'buscar/:termino', component: BusquedaComponent, data: {titulo: 'Búsquedas'}},
       {path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'}},
       {path: 'grafica1', component: Grafica1Component, data: {titulo: 'Gráfica #1'}},
       {path: 'perfil', component: PerfilComponent, data: {titulo: 'Perfil de Usuario'}},
@@ -37,10 +40,12 @@ const routes: Routes = [
       {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 
       // Páginas del sector Mantenimientos
-      {path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Mantenimiento de Usuarios'}},
-      {path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Mantenimiento de Hospitales'}},
       {path: 'medicos', component: MedicosComponent, data: {titulo: 'Mantenimiento de Médicos'}},
       {path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Mantenimiento del Médico'}},
+      {path: 'hospitales', component: HospitalesComponent, data: {titulo: 'Mantenimiento de Hospitales'}},
+      
+      // protegemos las rutas del Menu Lateral segùn Rol de Usuario con el CanActivate del Guard (para que no se pueda entrar con la URL)
+      {path: 'usuarios',  canActivate:[AdminGuard], component: UsuariosComponent, data: {titulo: 'Mantenimiento de Usuarios'}},
     ]
   },    
 ];

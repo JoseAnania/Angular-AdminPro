@@ -11,19 +11,13 @@ import { Usuario } from '../../models/usuario.model';
 })
 export class SidebarComponent implements OnInit {
 
-  // creamos una propiedad arreglo vacío que luego llenaremos
-  public menuItems: any[];
-
   // propiedad del Modelo del Usuario
   public usuario: Usuario;
 
   // inyectamos el servicio del Sidebar
   // inyectamos el Servicio de los Usuarios
-  constructor(private sidebarService: SiderbarService,
+  constructor(public sidebarService: SiderbarService,
               private usuarioService: UsuarioService) { 
-
-    // llenamos el menu 
-    this.menuItems = sidebarService.menu;
 
     // obtenemos los datos del Usuario almacenado en el Servicio 
     this.usuario = usuarioService.usuario;

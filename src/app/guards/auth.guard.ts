@@ -1,4 +1,5 @@
-/* Archivo creado para la Protección de Rutas */
+/* El Guard permite "bloquear" URL y no acceder si conocemos dicha URL*/
+/*Archivo creado para la Protección de Rutas según Token (es decir al loguearse) */
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';

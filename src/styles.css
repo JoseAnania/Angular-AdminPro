@@ -27,19 +27,19 @@
 }
 
 
-/* Tabla donde se muestran los Usuarios/Médicos/Hospitales en Mantenimientos */
-
-.w100 {
-    width: 100px;
-}
-
-
 /* Tamaño de imagen a mostrar en la Tabla de los Usuarios/Médicos/Hospitales en Mantenimientos */
 
 .avatar {
     border: 1px solid grey;
     width: 30px;
     border-radius: 100%;
+}
+
+
+/* Tabla donde se muestran los Usuarios/Médicos/Hospitales en Mantenimientos */
+
+.w100 {
+    width: 100px;
 }
 
 

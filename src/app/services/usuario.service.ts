@@ -32,11 +32,19 @@ export class UsuarioService {
     return this.usuario.uid || '';
   }
 
+  // Getter para obtener el Rol del Usuario
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE' {
+    return this.usuario.role;
+  }
+
   // Método para desloguearse
   logout() {
 
     // eliminamos el token del LocalStorage
     localStorage.removeItem('token');
+
+    // eliminamos el Menú Lateral del Usuario del LocalStorage
+    localStorage.removeItem('menu');
 
     // redireccionamos al login
     this.router.navigateByUrl('/login');
@@ -53,11 +61,15 @@ export class UsuarioService {
       headers: {
         'x-token': token
       }
-      // si la petición es correcta lo pasamos por el PIPE y el MAP (para transformar la respuesta en un booleano) y renovamos el Token
+      // si la petición es correcta lo pasamos por el PIPE y el MAP (para transformar la respuesta en un booleano)
     }).pipe(
       map((resp: any) => {
         
+        // renovamos el Token
         localStorage.setItem('token', resp.token);
+
+        // obtenemos el Menú Lateral según el Rol del Usuario
+        localStorage.setItem('menu', JSON.stringify(resp.menu));
         
         // extraemos (desestructuración) de la respuesta los datos del usuario
         const { email, google, nombre, role, img='', uid } = resp.usuario;
@@ -81,6 +93,9 @@ export class UsuarioService {
       .pipe(
         tap( (resp: any) => {
           localStorage.setItem('token', resp.token)
+
+          // obtenemos el Menú Lateral según el Rol del Usuario
+          localStorage.setItem('menu', JSON.stringify(resp.menu));
         })
       )
   }
@@ -128,6 +143,9 @@ export class UsuarioService {
       .pipe(
         tap( (resp: any) => {
           localStorage.setItem('token', resp.token)
+
+          // obtenemos el Menú Lateral según el Rol del Usuario
+          localStorage.setItem('menu', JSON.stringify(resp.menu));
         })
       )
   }

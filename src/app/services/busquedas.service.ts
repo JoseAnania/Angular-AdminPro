@@ -1,5 +1,6 @@
 /* Servicio creado para manejar la lógica de las peticiones HTTP de las Búsquedas 
-de Usuarios/Médicos/Hospitales de las páginas de Mantenimientos (que viene del Back) */
+de Usuarios/Médicos/Hospitales de las páginas de Mantenimientos (que viene del Back) 
+y de la Búsqueda Global del Header*/
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -47,7 +48,7 @@ export class BusquedasService {
       );
     }
 
-  // Método que realiza la búsqueda  
+  // Método que realiza la búsqueda por Colección (es decir busca un Médico, Usuario u Hospital desde la pag Mantenimientos)
   buscar(tabla: 'usuarios'|'medicos'|'hospitales', termino: string) {
     
     // obtenemos el Token guardado en el LocalStorage
@@ -78,6 +79,20 @@ export class BusquedasService {
         }
       })
     );
+  }
+
+  // Método que realiza la búsqueda Global (desde el Header)
+  busquedaGlobal(termino: string) {
+
+    // obtenemos el Token guardado en el LocalStorage
+    const token = localStorage.getItem('token') || '';
+    
+    // realizamos la petición GET al Back para realizar la Búsqueda (respuesta del tipo Arreglo de Any)
+    return this.http.get(`${base_url}/todo/${termino}`, {
+      headers: {
+        'x-token': token
+      }
+    })
   }
 }
 

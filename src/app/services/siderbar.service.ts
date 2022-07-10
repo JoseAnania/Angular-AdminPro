@@ -1,4 +1,5 @@
 /* Servicio creado para manejar la lógica global de todo lo relacionado con la Barra Lateral */
+/* Esto proviene del Backend ==> Helpers ==> menuLateral-frontend.js */
 
 import { Injectable } from '@angular/core';
 
@@ -7,31 +8,13 @@ import { Injectable } from '@angular/core';
 })
 export class SiderbarService {
 
-  // creamos una propiedad Arreglo que define el Menu del Sidebar
-  menu: any[] = [
+  // creamos una propiedad arreglo del menu
+  public menu = [];
 
-    {
-      titulo: 'Dashboard',
-      icono: 'mdi mdi-gauge',
-      submenu: [
-        { titulo: 'Main', url: '/' },
-        { titulo: 'ProgressBar', url: 'progress' },
-        { titulo: 'Gráficas', url: 'grafica1' },
-        { titulo: 'Promesas', url: 'promesas' },
-        { titulo: 'Rxjs', url: 'rxjs' },
-      ]
-    },
+  // método para cargar el Menú Lateral
+  cargarMenu() {
 
-    {
-      titulo: 'Mantenimiento',
-      icono: 'mdi mdi-folder-lock-open',
-      submenu: [
-        { titulo: 'Usuarios', url: 'usuarios' },
-        { titulo: 'Hospitales', url: 'hospitales' },
-        { titulo: 'Médicos', url: 'medicos' },
-      ]
-    },
-  ];
-
-  constructor() { }
+    // llenamos la propiedad con el Menu almacenado en el LocalStorage (que mostrará el Menú según el Rol del Usuario)
+    this.menu = JSON.parse(localStorage.getItem('menu')) || [];
+  }
 }
